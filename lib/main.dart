@@ -13,7 +13,7 @@ class _QuoteListState extends State<QuoteList> {
   List<Quote> quotes = [
     Quote(
         author: 'Oscar Wilde',
-        text: 'I have nothing to declare except my genous'),
+        text: 'I have nothing to declare except my genius'),
     Quote(
         author: 'Oscar Wilde',
         text: 'Be yourself; everyone else is already taken'),
@@ -32,7 +32,15 @@ class _QuoteListState extends State<QuoteList> {
           backgroundColor: Colors.redAccent,
         ),
         body: Column(
-          children: quotes.map((quote) => QuoteCard(quote: quote)).toList(),
+          children: quotes
+              .map((quote) => QuoteCard(
+                  quote: quote,
+                  delete: () {
+                    setState(() {
+                      quotes.remove(quote);
+                    });
+                  }))
+              .toList(),
         ));
   }
 }
